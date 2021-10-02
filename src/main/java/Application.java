@@ -1,10 +1,13 @@
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.example.conference.service.SpeakerService;
-import com.example.conference.service.SpeakerServiceInterface;
 
 public class Application {
 	
 	public static void main(String args[]) {
-		SpeakerServiceInterface service = new SpeakerService();
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		SpeakerService service = context.getBean("speakerService", SpeakerService.class);
+//		SpeakerServiceInterface service = new SpeakerService();
 		System.out.println(service.findAll().get(0).getFirstName());
 	}
 }
